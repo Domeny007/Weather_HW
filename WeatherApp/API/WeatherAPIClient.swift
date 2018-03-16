@@ -1,12 +1,3 @@
-
-
-
-
-
-
-
-
-
 import Foundation
 
 class WeatherAPIClient: APIClient {
@@ -21,12 +12,11 @@ class WeatherAPIClient: APIClient {
         self.fetch(with: request) { (either: Either<Weather, APIError>) in
             switch either   {
             case .value(let weather):
-                let weather = weather.forecast.forecastText
-                complition(.value(weather))
+                let textForecast = weather.forecast.forecastText
+                complition(.value(textForecast))
             case .error(let error):
                 complition(.error(error))
             }
         }
-        
     }
 }
